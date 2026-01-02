@@ -1,8 +1,8 @@
 pipeline {
     agent any 
-    options {
-        skipDefaultCheckout true
-    }
+    // options {
+    //     skipDefaultCheckout true
+    // }
     stages {
         // Checkout Stage
         stage("Checkout Code") {
