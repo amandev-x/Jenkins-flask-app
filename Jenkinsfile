@@ -20,7 +20,7 @@ pipeline {
         stage("Build Stage") {
             steps {
                 echo "Building the application..."
-                echo "The IP Address of the DB is ${DB_ADDRESS} and username is ${USERNAME}"
+                echo "Commit: ${env.GIT_COMMIT}"
             }
         }
 
