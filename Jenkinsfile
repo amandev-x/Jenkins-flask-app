@@ -1,8 +1,8 @@
 pipeline {
     agent any 
     environment {
-        "DB_ADDRESS" = "192.168.1.9"
-        "USERNAME" = "DB_USER_1"
+        DB_ADDRESS = "192.168.1.9"
+        USERNAME = "DB_USER_1"
     }
     options {
         skipDefaultCheckout true
