@@ -25,7 +25,8 @@ pipeline {
                 {
                     sh '''
                     echo "Username is ${myusername}"
-                    echo "Password is ${mypassword}"                   '''
+                    echo "Password is ${mypassword}"                   
+                    '''
                 }
             }
         }
@@ -35,13 +36,13 @@ pipeline {
             stages{
                 stage('Lint') {
                     steps {
-                        sh "sleep 10"
+                       echo "Linting code in nested stages"
                     }
                 }
 
                 stage('Unit Test') {
                     steps {
-                        sh "sleep 10"
+                       echo "Formatting code in nested stages"
                     }
                 }
             }
