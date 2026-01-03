@@ -38,7 +38,7 @@ pipeline {
                     steps {
                        echo "Linting code in nested stages"
                         sh '''
-                        'sleep 20
+                         sleep 20
                         '''
                     }
                 }
