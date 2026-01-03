@@ -72,6 +72,16 @@ pipeline {
             }
         }
 
+        stage("Deploy Stage") {
+            input {
+                message "Do you want to proceed further and deploy to ${params.ENVIRONMENT} environment?"
+                ok "Yes, Deploy Now"
+            }
+            steps {
+                echo "Deploying the application..."
+            }
+        }
+
         // // Build Stage
         // stage() 
     }
