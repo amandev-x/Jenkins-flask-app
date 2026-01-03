@@ -37,18 +37,18 @@ pipeline {
                 stage('Lint') {
                     steps {
                        echo "Linting code in nested stages"
-                       """
-                        sh 'sleep 20
-                       """
+                        sh '''
+                        'sleep 20
+                        '''
                     }
                 }
 
                 stage('Unit Test') {
                     steps {
                        echo "Formatting code in nested stages"
-                       """
-                        sh 'sleep 10'
-                      """
+                       sh '''
+                       sleep 10
+                       '''
                     }
             }
         }
