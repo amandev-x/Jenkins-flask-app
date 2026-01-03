@@ -42,6 +42,7 @@ pipeline {
                          sleep 65
                         '''
                     }
+        }
 
         stage("Build Stage") {
             steps {
