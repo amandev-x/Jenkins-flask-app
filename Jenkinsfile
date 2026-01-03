@@ -34,11 +34,11 @@ pipeline {
         stage('Lint and Test') {
             stages{
                 stage('Lint') {
-                    sh 'sleep 10'
+                    sh "sleep 10"
                 }
 
                 stage('Unit Test') {
-                    sh 'sleep 10'
+                    sh "sleep 10"
                 }
             }
         }
