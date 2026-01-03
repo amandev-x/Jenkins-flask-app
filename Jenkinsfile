@@ -33,19 +33,27 @@ pipeline {
 
         // Nesting stages
         stage('Lint and Test') {
+            parallel {
             stages{
                 stage('Lint') {
                     steps {
                        echo "Linting code in nested stages"
+                       """
+                        sh 'sleep 20
+                       """
                     }
                 }
 
                 stage('Unit Test') {
                     steps {
                        echo "Formatting code in nested stages"
+                       """
+                        sh 'sleep 10'
+                       """
                     }
                 }
             }
+        }
         }
 
 
