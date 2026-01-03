@@ -1,8 +1,14 @@
 pipeline {
     agent any 
-    options {
-        timeout(time: 1, unit: 'MINUTES')
+    // options {
+    //     timeout(time: 1, unit: 'MINUTES')
+    // }
+
+    parameters{
+        string(name: 'ENVIRONMENT', defaultValue: 'dev', description: "Value for the Environment")
+        booleanParams(name: 'RUN_TESTS', defaultValue: false, description: "Boolean value to run tests")
     }
+
     environment {
         DB_ADDRESS = "192.168.1.9"
         USERNAME = "DB_USER_1"
@@ -35,19 +41,34 @@ pipeline {
         }
 
         // Nesting stages
-        stage('Lint and Test') {
+        stage('Lint') {
                     steps {
-                       echo "Linting code in nested stages"
-                        sh '''
-                         sleep 65
-                        '''
+                       echo "Linting code"
                     }
+        }
+
+        stage('Test'){
+            when {
+                expression {
+                    params.RUN_TESTS == true
+                }
+            }
+
+            steps {
+                echo "Running tests"
+            }
         }
 
         stage("Build Stage") {
             steps {
                 echo "Building the application..."
                 echo "Commit: ${env.GIT_COMMIT}"
+            }
+        }
+
+        stage("Paramters") {
+            steps {
+                echo "Running in ${params.ENVIRONMENT}"
             }
         }
 
