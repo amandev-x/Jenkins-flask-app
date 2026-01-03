@@ -1,5 +1,8 @@
 pipeline {
     agent any 
+    options {
+        timeout(time: 1, unit: 'MINUTES')
+    }
     environment {
         DB_ADDRESS = "192.168.1.9"
         USERNAME = "DB_USER_1"
@@ -33,27 +36,12 @@ pipeline {
 
         // Nesting stages
         stage('Lint and Test') {
-            parallel {
-                stage('Lint') {
                     steps {
                        echo "Linting code in nested stages"
                         sh '''
-                         sleep 20
+                         sleep 65
                         '''
                     }
-                }
-
-                stage('Unit Test') {
-                    steps {
-                       echo "Formatting code in nested stages"
-                       sh '''
-                       sleep 10
-                       '''
-                    }
-            }
-        }
-        }
-
 
         stage("Build Stage") {
             steps {
