@@ -68,7 +68,7 @@ pipeline {
 
         stage("Paramters") {
             steps {
-                echo "Running in ${params.Environment} environment"
+                echo "Running in ${params.ENVIRONMENT} environment"
             }
         }
 
