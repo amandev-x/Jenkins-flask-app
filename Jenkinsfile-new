@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker {
+        dockerContainer {
             image "python:3.11-slim"
         }
     }
@@ -14,9 +14,8 @@ pipeline {
             steps {
                 echo "Setting up the environment..."
                 sh '''
-                  python3 -m venv venv 
-                  source venv/bin/activate
-                  pip3 install -r requirements.txt
+                  pip install --upgrade pip
+                  pip install -r requirements.txt
 
                 '''
             }
@@ -44,7 +43,7 @@ pipeline {
                     sh '''
                         scp -i $MY_SSH_KEY -o StrictHostKeyChecking=no app.zip ${username}@${SERVER_IP}:/home/ec2-user/
                         ssh -i $MY_SSH_KEY -o StrictHostKeyChecking=no ${username}@${SERVER_IP} << EOF
-                            unzip -o /home/ec2-user/myapp.zip -d /home/ec2-user/app/
+                            unzip -o /home/ec2-user/app.zip -d /home/ec2-user/app/
                             source /home/ec2-user/venv/bin/activate
                             cd /home/ec2-user/app/
                             pip install -r requirements.txt
